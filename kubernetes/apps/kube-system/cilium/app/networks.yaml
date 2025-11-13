@@ -81,12 +81,11 @@ spec:
     - 0.0.0.0/0
   egressGateway:
     nodeSelector:
-      fieldSelector:
-        matchExpressions:
-          - key: metadata.name
-            operator: In
-            values:
-              - talos1
+      matchExpressions:
+        - key: metadata.name
+          operator: In
+          values:
+            - talos1
     egressIP: 10.0.30.35
 
 # ---
