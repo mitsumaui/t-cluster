@@ -44,6 +44,8 @@ spec:
                 cpu: 10m
               limits:
                 memory: 64Mi
+    podAnnotations:
+      egress_path: "egress-test"
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
