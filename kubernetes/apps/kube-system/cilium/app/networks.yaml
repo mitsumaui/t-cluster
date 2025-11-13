@@ -67,6 +67,28 @@ spec:
           peerAddress: 10.0.30.1
           peerConfigRef:
             name: bgp-peer-config-v4
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumEgressGatewayPolicy
+metadata:
+  name: snat-egress-test
+spec:
+  selectors:
+    - namespaceSelector:
+        matchLabels:
+          name: media
+  destinationCIDRS:
+    - 0.0.0.0/0
+  egressGateway:
+    nodeSelector:
+      fieldSelector:
+        matchExpressions:
+          - key: metadata.name
+            operator: In
+            values:
+              - talos1
+    natOutgoingIPs:
+      - 10.0.30.35
 
 # ---
 # # Egress for Test
