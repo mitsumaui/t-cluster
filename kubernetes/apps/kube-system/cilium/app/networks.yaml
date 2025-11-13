@@ -70,7 +70,7 @@ spec:
 
 ---
 # Egress for Test
-apiVersion: cilium.io/v2
+apiVersion: cilium.io/v2alpha1
 kind: CiliumEgressGatewayPolicy
 metadata:
   name: egress-test

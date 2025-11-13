@@ -44,9 +44,9 @@ spec:
                 cpu: 10m
               limits:
                 memory: 64Mi
-    podAnnotations:
-      egress_path: "egress-test"
     defaultPodOptions:
+      annotations:
+        egress_path: "egress-test"
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534
