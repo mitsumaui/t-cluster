@@ -77,7 +77,7 @@ spec:
     - namespaceSelector:
         matchLabels:
           name: media
-  destinationCIDRS:
+  destinationCIDRs:
     - 0.0.0.0/0
   egressGateway:
     nodeSelector:
