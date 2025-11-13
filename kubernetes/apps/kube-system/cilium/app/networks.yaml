@@ -93,8 +93,11 @@ spec:
   egressGateway:
   #   # Specify which node should act as gateway for this policy.
     nodeSelector:
-      matchExpressions:
-        - { key: somekey, operator: NotIn, values: ["never-used-value"] }
+      matchLabels:
+        node.kubernetes.io/name: talos1
+
+      # matchExpressions:
+      #   - { key: somekey, operator: NotIn, values: ["never-used-value"] }
 
     # Specify the IP address used to SNAT traffic matched by the policy.
     # It must exist as an IP associated with a network interface on the instance.
