@@ -76,7 +76,7 @@ spec:
   selectors:
     - podSelector:
         matchLabels:
-          app: echo
+          app.kubernetes.io/controller: echo
   destinationCIDRs:
     - 0.0.0.0/0
   egressGateway:
