@@ -83,7 +83,7 @@ spec:
     nodeSelector:
       matchLabels:
         kubernetes.io/hostname: talos1
-    egressIP: 10.0.30.36
+    egressIP: 10.0.30.35
 
 # ---
 # # Egress for Test
