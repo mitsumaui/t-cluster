@@ -74,9 +74,9 @@ metadata:
   name: snat-egress-test
 spec:
   selectors:
-    - namespaceSelector:
+    - podSelector:
         matchLabels:
-          name: media
+          app: echo
   destinationCIDRs:
     - 0.0.0.0/0
   egressGateway:
