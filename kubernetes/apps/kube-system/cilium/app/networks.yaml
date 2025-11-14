@@ -81,11 +81,8 @@ spec:
     - 0.0.0.0/0
   egressGateway:
     nodeSelector:
-      matchExpressions:
-        - key: metadata.name
-          operator: In
-          values:
-            - talos1
+      matchLabels:
+        kubernetes.io/hostname: talos1
     egressIP: 10.0.30.35
 
 # ---
