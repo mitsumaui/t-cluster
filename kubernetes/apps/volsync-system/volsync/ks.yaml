@@ -7,7 +7,7 @@ metadata:
 spec:
   dependsOn:
     - name: openebs
-      namespace: openebs-system
+      namespace: openebs
     - name: snapshot-controller
       namespace: kube-system
   interval: 1h
