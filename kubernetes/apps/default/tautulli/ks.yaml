@@ -13,6 +13,9 @@ spec:
       app.kubernetes.io/name: &app tautulli
   path: ./kubernetes/apps/default/tautulli/app
   postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
     substitute:
       APP: tautulli
       VOLSYNC_STORAGECLASS: openebs-hostpath
