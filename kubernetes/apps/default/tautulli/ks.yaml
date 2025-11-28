@@ -20,6 +20,7 @@ spec:
       APP: tautulli
       VOLSYNC_STORAGECLASS: openebs-hostpath
       VOLSYNC_CAPACITY: 5Gi
+      VOLSYNC_DATASOURCE_BLOCK: ""
   prune: true
   sourceRef:
     kind: GitRepository
