@@ -6,16 +6,8 @@ metadata:
 spec:
   chartRef:
     kind: OCIRepository
-    name: *app
+    name: tautulli
   interval: 1h
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      strategy: rollback
-      retries: 3
   values:
     controllers:
       tautulli:
@@ -43,11 +35,6 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
-              startup:
-                enabled: true
-                spec:
-                  failureThreshold: 30
-                  periodSeconds: 10
             resources:
               requests:
                 cpu: 10m
@@ -62,23 +49,18 @@ spec:
         fsGroup: *context
         fsGroupChangePolicy: OnRootMismatch
 
-    persistence:
-      config:
-        existingClaim: *app
-
-    serviceMonitor:
+    service:
       app:
-        endpoints:
-          - port: http
-
+        ports:
+          http:
+            port: *port
     route:
       app:
         hostnames: ["{{ .Release.Name }}.${SECRET_DOMAIN}"]
         parentRefs:
           - name: envoy-internal
             namespace: network
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *port
+
+    persistence:
+      config:
+        existingClaim: *app
