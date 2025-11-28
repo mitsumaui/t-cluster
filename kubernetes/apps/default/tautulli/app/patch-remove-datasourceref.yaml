@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tautulli
+  # namespace can be omitted if the kustomization sets a namespace (it does)
+spec:
+  dataSourceRef: null
