@@ -5,6 +5,12 @@ kind: Kustomization
 metadata:
   name: tautulli
 spec:
+  components:
+    - ../../../../components/volsync
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: rook-ceph
+  interval: 1h
   commonMetadata:
     labels:
       app.kubernetes.io/name: &app tautulli
