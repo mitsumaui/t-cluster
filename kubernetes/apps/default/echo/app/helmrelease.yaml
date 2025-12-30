@@ -45,8 +45,6 @@ spec:
               limits:
                 memory: 64Mi
     defaultPodOptions:
-      annotations:
-        egress_path: "egress-test"
       securityContext:
         runAsNonRoot: true
         runAsUser: 65534

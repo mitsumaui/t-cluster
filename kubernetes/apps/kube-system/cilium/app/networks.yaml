@@ -6,7 +6,7 @@ metadata:
 spec:
   allowFirstLastIPs: "No"
   blocks:
-    - cidr: "10.0.31.0/24"
+    - cidr: "10.0.30.0/24"
 ---
 apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
@@ -59,68 +59,11 @@ spec:
     matchLabels:
       kubernetes.io/os: linux
   bgpInstances:
-    - name: instance-64514
-      localASN: 64514
+    - name: instance-64518
+      localASN: 64518
       peers:
-        - name: peer-64513-v4
-          peerASN: 64513
+        - name: peer-64517-v4
+          peerASN: 64517
           peerAddress: 10.0.30.1
           peerConfigRef:
             name: bgp-peer-config-v4
----
-apiVersion: cilium.io/v2
-kind: CiliumEgressGatewayPolicy
-metadata:
-  name: snat-egress-test
-spec:
-  selectors:
-    - podSelector:
-        matchLabels:
-          app.kubernetes.io/controller: echo
-  destinationCIDRs:
-    - 0.0.0.0/0
-  egressGateway:
-    nodeSelector:
-      matchLabels:
-        kubernetes.io/hostname: talos1
-    egressIP: 10.0.30.35
-
-# ---
-# # Egress for Test
-# apiVersion: cilium.io/v2
-# kind: CiliumEgressGatewayPolicy
-# metadata:
-#   name: egress-test
-# spec:
-#   # Specify which pods should be subject to the current policy.
-#   # Multiple pod selectors can be specified.
-#   selectors:
-#   - podSelector:
-#       matchLabels:
-#         egress_path: "egress-test"
-#         # The following label selects default namespace
-#         # io.kubernetes.pod.namespace: default
-#   # Specify which destination CIDR(s) this policy applies to.
-#   # Multiple CIDRs can be specified.
-#   destinationCIDRs:
-#   - "0.0.0.0/0"
-#   - "::/0"
-
-#   # Configure the gateway node.
-#   egressGateway:
-#   #   # Specify which node should act as gateway for this policy.
-#     nodeSelector:
-#       matchLabels:
-#         node.kubernetes.io/name: talos1
-
-#       # matchExpressions:
-#       #   - { key: somekey, operator: NotIn, values: ["never-used-value"] }
-
-#     # Specify the IP address used to SNAT traffic matched by the policy.
-#     # It must exist as an IP associated with a network interface on the instance.
-#     egressIP: 10.0.30.2
-
-#     # Alternatively it's possible to specify the interface to be used for egress traffic.
-#     # In this case the first IPv4 and IPv6 addresses assigned to that interface will be used
-#     # as egress IP.
-#     # interface: enp0s8
